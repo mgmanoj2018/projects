@@ -2,7 +2,7 @@ import React from "react";
 import ErrorMessage from "./component/ErrorMessage";
 import FoodItems from "./component/FoodItems";
 import FoodName from "./component/FoodName";
-import "./App.css";
+// import "./App.css";
 
 function App() {
   const foods = ["Dal", "Green Vegetable", "Roti", "Salad", "Milk"];

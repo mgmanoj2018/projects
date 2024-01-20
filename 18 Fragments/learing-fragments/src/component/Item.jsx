@@ -1,10 +1,12 @@
+import styles from './Item.module.css'
 import React from 'react'
 
 const Item = ({foodItem}) => {
   return (
-    <div>
-        <li className="kg-item list-group-item"><span className='kg-span'></span>{foodItem}</li>
-    </div>
+    <>
+        <li className={`${styles["kgItem"]} list-group-item`}>
+        <span className={styles["kgSpan"]}></span>{foodItem}</li>
+    </>
   )
 }
 
