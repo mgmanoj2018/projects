@@ -1,0 +1,7 @@
+.kg-item {
+  background-color: gray;
+}
+.kg-item .kg-span{
+  font-weight: 500;
+  color: red;
+}
