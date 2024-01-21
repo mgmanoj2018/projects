@@ -1,0 +1,9 @@
+.calculator{
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+input{padding: 5px}
