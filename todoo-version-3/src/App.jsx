@@ -16,9 +16,12 @@ function App() {
   ]
   const [todoItems,SetTodoItems] = useState([]);
   const addHandleClick = (addName, datenew)=>{
-    console.log(addName, datenew);
-    let newtodo = [...todoItems,{name:addName,date:datenew}]
-    SetTodoItems(newtodo)
+    
+    
+    SetTodoItems((currentState)=>{
+      let newtodo = [...currentState,{name:addName,date:datenew}]
+      return newtodo
+    })
   }
   const deleteItems = (deleteItem)=>{
      const NewItemList = todoItems.filter((item)=>item.name !== deleteItem);

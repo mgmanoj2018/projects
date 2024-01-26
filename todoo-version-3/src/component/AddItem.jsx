@@ -1,34 +1,47 @@
-import { useState } from 'react';
-import styles from './AddItem.module.css'
+import { useRef } from "react";
+import styles from "./AddItem.module.css";
 import { IoAddOutline } from "react-icons/io5";
-const AddItem = ({addHandleClick}) => {
-  const [inputValue ,setInputValue] = useState("");
-  const [dueDate , setDueDate] = useState("")
-
-   const handlclick =()=>{
-    addHandleClick(inputValue, dueDate);
-    setInputValue("");
-    setDueDate("")
-   }
-  return (
+const AddItem = ({ addHandleClick }) => {
+  let inputValueRef = useRef()
+  let dueDateValueRef = useRef()
+  {console.log("render")}
+  const handlclick = (event) => {
+    event.preventDefault()
+    const inputRef = inputValueRef.current.value
+    const dueRef = dueDateValueRef.current.value
+    addHandleClick(inputRef, dueRef);
+  };
+  return (    
     <>
+    {console.log("render")}
       <div className="container ">
-        <div className={`row ${styles.kgAddRow}`}>
+        <form className={`row ${styles.kgAddRow}`} onSubmit={handlclick}>
           <div className="col-6">
-            <input type="text" placeholder="Type Here" value={inputValue} onChange={(e)=>{setInputValue(e.target.value)}}/>
+            <input
+              ref={inputValueRef}
+              type="text"
+              placeholder="Type Here"
+            />
           </div>
           <div className="col-4">
-            <input type="date" onChange={(e)=>{setDueDate(e.target.value)}} value={dueDate}/>
+            <input
+              type="date"
+              ref={dueDateValueRef}
+            />
           </div>
           <div className="col-2">
-            <button type="button" className="todo-btn btn btn-primary" onClick={handlclick}>
-            <IoAddOutline />
+            <button
+              
+              className="todo-btn btn btn-primary"
+              
+            >
+              <IoAddOutline />
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
 };
 
-export default AddItem
+export default AddItem;
