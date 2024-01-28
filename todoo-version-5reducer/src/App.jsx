@@ -22,7 +22,7 @@ const todoReducer = (currentState, action) => {
 };
 function App() {
   // const [todoItems,SetTodoItems] = useState([]);
-  // const [state,despatch] = useReducer(reducer,Infinity)
+  // const [state,despatch] = useReducer(reducer,Initialstate)
   const [todoItems, dispatchTodoItems] = useReducer(todoReducer, []);
   const addItem = (itemName, dueDate) => {
     const newAction = {
