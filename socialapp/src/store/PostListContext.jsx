@@ -4,6 +4,7 @@ import { createContext } from "react";
 export const PostContext = createContext({
   PostList:[],
   AddPost: () => {},
+  fetchData :() =>{},
   DeletePost: () => {},
 });
 
@@ -14,6 +15,8 @@ const Postreducer = (currentPostList, action) => {
     newPostList = currentPostList.filter((post)=>post.id !==action.payload.postId)
   }else if(action.type==="ADD_POST"){
     newPostList = [...currentPostList,action.payload]
+  }else if(action.type ==="POST_LIST_ALL"){
+    newPostList = action.payload.posts
   }
   return newPostList;
 };
@@ -41,36 +44,25 @@ const PostListProvider = ({children}) => {
       }
     })
   };
+  const fetchData = (posts)=>{
+      dispatchPostList({
+        type:"POST_LIST_ALL",
+        payload:{
+          posts
+        }
+      })
+  }
   const [postList, dispatchPostList] = useReducer(Postreducer, 
-    DEFAUTPOSTLIST
+    []
   );
   // console.log(postList)
   return (
     <PostContext.Provider
-      value={{ postList, AddPost, DeletePost }}
+      value={{ postList, fetchData, AddPost, DeletePost }}
     >
       {children}
     </PostContext.Provider>
   );
 }
-
-const DEFAUTPOSTLIST = [
-  {
-    id: "1",
-    title: "GO to Mumbai",
-    body: "Hi fiends, I am going to Mumbai for vacations. Hope to enjoy a lot. Peace out ",
-    userId: "user-9",
-    reactions: 2,
-    tags: ["vacation", "Mumbai", "Enjoying"],
-  },
-  {
-    id: "2",
-    title: "Pass ho bhai",
-    body: "4 saal ke bad pass ho gaye bhai. Hard to believe. ",
-    userId: "user-12",
-    reactions: 9,
-    tags: ["graduation", "Unbelievable"],
-  },
-]
 
 export default PostListProvider;

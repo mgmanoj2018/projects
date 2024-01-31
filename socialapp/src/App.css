@@ -19,3 +19,11 @@
   width: 80%;
   margin-top: 50px;
 }
+.welcome{
+  margin: 150px 0;
+  text-transform: capitalize;
+
+}
+.spinner{
+  margin: 10% 0;
+}
