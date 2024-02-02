@@ -22,18 +22,12 @@ const Postreducer = (currentPostList, action) => {
 };
 const PostListProvider = ({children}) => {
     
-  const AddPost = (userId,postTitle,postBody,reactions,tags) => {
+  const AddPost = (post) => {
     dispatchPostList({
       type:"ADD_POST",
-      payload:{
-        id:Date.now(),
-        userId:userId,
-        title:postTitle,
-        body:postBody,
-        reactions:reactions,
-        tags:tags
+      payload: {post}
 
-      }
+      
     })
   };
   const DeletePost = (postId) => {
@@ -45,6 +39,7 @@ const PostListProvider = ({children}) => {
     })
   };
   const fetchData = (posts)=>{
+    console.log("delete function render")
       dispatchPostList({
         type:"POST_LIST_ALL",
         payload:{
