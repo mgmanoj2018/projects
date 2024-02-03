@@ -14,7 +14,7 @@ function App() {
         <Container>
           <Header />
           <div className="col-lg-12 mx-auto">
-          {privacy ?<DisplayCounter/> :<Privacy/>}
+          {privacy ?<Privacy/> :<DisplayCounter />}
             <Control/>
           </div>
         </Container>

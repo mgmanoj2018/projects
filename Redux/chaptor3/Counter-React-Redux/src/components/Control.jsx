@@ -1,18 +1,21 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { counterAction, privacyAction } from "../../store";
+ import { useDispatch } from "react-redux";
 
 const Control = () => {
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
   const inputElement = useRef();
   //  console.log(inputValue.current.value)
   const handleIncreament = () => {
-    dispatch({ type: "INCREAMENT" });
+    // console.log(counterAction.increment())
+  dispatch(counterAction.increment()) 
   };
   const handleDecreament = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch(counterAction.decrement())
   };
   const handleIncreamentFomInput = () => {
-    dispatch({ type: "INPUT_INCREAMENT", payload:{num: Number(inputElement.current.value) }});
+    // dispatch({ type: "INPUT_INCREAMENT", payload:{num: Number(inputElement.current.value) }});
+    dispatch(counterAction.add({num:inputElement.current.value}))
     inputElement.current.value=""
   };
   const handleDcreamtFomInput = () => {
@@ -20,10 +23,11 @@ const Control = () => {
       type: "INPUT_DECREAMENT",
       payload: { num: inputElement.current.value }
     });
+    dispatch(counterAction.subtract({num: inputElement.current.value}))
     inputElement.current.value=""
   };
   const handlePrivacy = ()=>{
-    dispatch({type:"HANDLE_PRIVACY"})
+    dispatch(privacyAction.toogle())
   }
   return (
     <>
